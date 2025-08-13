@@ -1,0 +1,351 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>🚨 VIX Critical Signals - LIVE MARKET DATA</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(135deg, #0f0f23 0%, #1a1a40 100%);
+            color: white;
+            min-height: 100vh;
+            padding: 20px;
+        }
+        
+        .dashboard {
+            max-width: 1400px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: 1fr 1fr 1fr;
+            gap: 20px;
+        }
+        
+        .signal-panel {
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 15px;
+            padding: 25px;
+            backdrop-filter: blur(10px);
+            border: 2px solid rgba(255, 255, 255, 0.1);
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .signal-panel::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 4px;
+            background: linear-gradient(90deg, #ff4757, #ffa502, #2ed573);
+        }
+        
+        .header {
+            grid-column: 1 / -1;
+            text-align: center;
+            background: rgba(255, 255, 255, 0.15);
+            margin-bottom: 20px;
+        }
+        
+        .header h1 {
+            font-size: 2.5em;
+            margin-bottom: 10px;
+            background: linear-gradient(45deg, #ff4757, #ffa502, #2ed573);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+        
+        .signal-title {
+            font-size: 1.4em;
+            margin-bottom: 20px;
+            color: #ffa502;
+            border-bottom: 2px solid #ffa502;
+            padding-bottom: 10px;
+        }
+        
+        .signal-value {
+            font-size: 3em;
+            font-weight: bold;
+            margin: 15px 0;
+            text-align: center;
+        }
+        
+        .signal-status {
+            padding: 12px 20px;
+            border-radius: 25px;
+            font-weight: bold;
+            text-align: center;
+            margin: 15px 0;
+            font-size: 1.1em;
+        }
+        
+        .activated { 
+            background: #ff4757; 
+            color: white;
+            animation: pulse 2s infinite;
+        }
+        
+        .warning { 
+            background: #ffa502; 
+            color: black;
+        }
+        
+        .safe { 
+            background: #2ed573; 
+            color: white;
+        }
+        
+        @keyframes pulse {
+            0%, 100% { transform: scale(1); opacity: 1; }
+            50% { transform: scale(1.05); opacity: 0.8; }
+        }
+        
+        .threshold {
+            font-size: 0.9em;
+            color: #ccc;
+            margin: 10px 0;
+            text-align: center;
+        }
+        
+        .live-data {
+            background: rgba(0, 0, 0, 0.3);
+            padding: 15px;
+            border-radius: 10px;
+            margin: 15px 0;
+        }
+        
+        .data-row {
+            display: flex;
+            justify-content: space-between;
+            margin: 8px 0;
+            padding: 5px 0;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+        }
+        
+        .alert-section {
+            grid-column: 1 / -1;
+            background: rgba(255, 71, 87, 0.2);
+            border: 2px solid #ff4757;
+            border-radius: 15px;
+            padding: 20px;
+            margin-top: 20px;
+        }
+        
+        .signal-summary {
+            grid-column: 1 / -1;
+            background: rgba(255, 255, 255, 0.1);
+            padding: 25px;
+            border-radius: 15px;
+            margin-top: 20px;
+        }
+        
+        .summary-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 20px;
+            margin-top: 20px;
+        }
+        
+        .summary-item {
+            text-align: center;
+            padding: 15px;
+            background: rgba(0, 0, 0, 0.3);
+            border-radius: 10px;
+        }
+        
+        .timestamp {
+            font-size: 0.8em;
+            color: #aaa;
+            text-align: center;
+            margin-top: 10px;
+        }
+        
+        .interpretation {
+            background: rgba(46, 213, 115, 0.1);
+            border: 2px solid #2ed573;
+            padding: 20px;
+            border-radius: 10px;
+            margin-top: 20px;
+        }
+        
+        .red-text { color: #ff4757; font-weight: bold; }
+        .green-text { color: #2ed573; font-weight: bold; }
+        .yellow-text { color: #ffa502; font-weight: bold; }
+    </style>
+</head>
+<body>
+    <div class="dashboard">
+        <div class="signal-panel header">
+            <h1>🚨 VIX CRITICAL SIGNALS MONITOR</h1>
+            <p>Live Market Data from Investing.com - August 13, 2025</p>
+            <div class="timestamp">Data as of: 18:27:48 ET</div>
+        </div>
+        
+        <!-- Signal 1: VIX9D/VIX Ratio -->
+        <div class="signal-panel">
+            <div class="signal-title">📊 VIX9D/VIX RATIO</div>
+            <div class="signal-value green-text">0.854</div>
+            <div class="signal-status safe">✅ NORMAL RANGE</div>
+            <div class="threshold">⚠️ Signal Threshold: >1.10</div>
+            
+            <div class="live-data">
+                <div class="data-row">
+                    <span>VIX9D:</span>
+                    <span>12.38</span>
+                </div>
+                <div class="data-row">
+                    <span>VIX:</span>
+                    <span>14.49</span>
+                </div>
+                <div class="data-row">
+                    <span>Ratio:</span>
+                    <span>0.854</span>
+                </div>
+                <div class="data-row">
+                    <span>Distance to Signal:</span>
+                    <span class="green-text">-22.3%</span>
+                </div>
+            </div>
+        </div>
+        
+        <!-- Signal 2: VIX Futures Structure -->
+        <div class="signal-panel">
+            <div class="signal-title">📈 VIX FUTURES STRUCTURE</div>
+            <div class="signal-value green-text">-2.76</div>
+            <div class="signal-status safe">📈 NORMAL CONTANGO</div>
+            <div class="threshold">🔥 Signal Threshold: <-2 (Backwardation)</div>
+            
+            <div class="live-data">
+                <div class="data-row">
+                    <span>M1 (VXc1):</span>
+                    <span>15.75</span>
+                </div>
+                <div class="data-row">
+                    <span>M2 (VXc2):</span>
+                    <span>18.51</span>
+                </div>
+                <div class="data-row">
+                    <span>M1-M2 Spread:</span>
+                    <span>-2.76</span>
+                </div>
+                <div class="data-row">
+                    <span>Structure:</span>
+                    <span class="green-text">CONTANGO</span>
+                </div>
+            </div>
+        </div>
+        
+        <!-- Signal 3: SKEW Index -->
+        <div class="signal-panel">
+            <div class="signal-title">⚡ SKEW INDEX</div>
+            <div class="signal-value red-text">153.13</div>
+            <div class="signal-status activated">⚡ TAIL RISK SIGNAL</div>
+            <div class="threshold">🎯 Signal Threshold: >150</div>
+            
+            <div class="live-data">
+                <div class="data-row">
+                    <span>Current SKEW:</span>
+                    <span class="red-text">153.13</span>
+                </div>
+                <div class="data-row">
+                    <span>Change:</span>
+                    <span>+1.68 (+1.11%)</span>
+                </div>
+                <div class="data-row">
+                    <span>Above Threshold:</span>
+                    <span class="red-text">+3.13 points</span>
+                </div>
+                <div class="data-row">
+                    <span>Tail Risk:</span>
+                    <span class="red-text">ELEVATED</span>
+                </div>
+            </div>
+        </div>
+        
+        <!-- Signal Summary -->
+        <div class="signal-summary">
+            <h2 style="color: #ffa502; text-align: center; margin-bottom: 20px;">📊 SIGNAL CONFLUENCE ANALYSIS</h2>
+            
+            <div class="summary-grid">
+                <div class="summary-item">
+                    <h3>Active Signals</h3>
+                    <div style="font-size: 2em; color: #ff4757;">1 of 3</div>
+                    <div>SKEW Only</div>
+                </div>
+                <div class="summary-item">
+                    <h3>Market State</h3>
+                    <div style="font-size: 1.5em; color: #ffa502;">⚠️ CAUTION</div>
+                    <div>Elevated Tail Risk</div>
+                </div>
+                <div class="summary-item">
+                    <h3>VIX Trend</h3>
+                    <div style="font-size: 1.5em; color: #2ed573;">↓ DECLINING</div>
+                    <div>-1.63% today</div>
+                </div>
+                <div class="summary-item">
+                    <h3>NYSE TICK</h3>
+                    <div style="font-size: 1.5em; color: #2ed573;">+739</div>
+                    <div>Bullish Breadth</div>
+                </div>
+            </div>
+            
+            <div class="interpretation">
+                <h3 style="color: #2ed573; margin-bottom: 15px;">🎯 CURRENT INTERPRETATION:</h3>
+                <ul style="line-height: 1.8;">
+                    <li><span class="green-text">VIX9D/VIX Ratio (0.854):</span> Well below 1.10 threshold - NO near-term panic</li>
+                    <li><span class="green-text">Futures Structure (-2.76):</span> In contango, not backwardation - NO systemic stress</li>
+                    <li><span class="red-text">SKEW (153.13):</span> ACTIVATED - Institutions buying tail risk protection</li>
+                    <li><span class="yellow-text">Market Breadth:</span> NYSE TICK +739 shows positive internals</li>
+                </ul>
+                
+                <div style="margin-top: 20px; padding: 15px; background: rgba(255, 165, 2, 0.1); border-radius: 10px;">
+                    <h4 style="color: #ffa502;">⚠️ TRADING STANCE:</h4>
+                    <p style="margin-top: 10px;">
+                        <strong>NO VIX SPIKE ENTRY YET.</strong> Only 1 of 3 signals active (SKEW). The elevated SKEW 
+                        indicates institutional hedging but without VIX term structure inversion or VIX9D spike, 
+                        this is NOT a high-confidence volatility entry. Monitor for additional signal confluence.
+                    </p>
+                </div>
+            </div>
+        </div>
+        
+        <!-- Data Source Info -->
+        <div class="signal-panel" style="grid-column: 1 / -1;">
+            <h3 style="color: #ffa502; margin-bottom: 15px;">📈 DATA SOURCES CONFIRMED:</h3>
+            <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 15px;">
+                <div>
+                    <strong>VIX:</strong> 14.49 (S&P 500 VIX from Investing.com)
+                </div>
+                <div>
+                    <strong>VIX9D:</strong> 12.38 (S&P 500 9-Day Volatility)
+                </div>
+                <div>
+                    <strong>M1 Future (VXc1):</strong> 15.75 (Front Month)
+                </div>
+                <div>
+                    <strong>M2 Future (VXc2):</strong> 18.51 (Second Month)
+                </div>
+                <div>
+                    <strong>SKEW:</strong> 153.13 (CBOE SKEW Index)
+                </div>
+                <div>
+                    <strong>NYSE TICK:</strong> +739 (Market Breadth)
+                </div>
+            </div>
+            
+            <div style="margin-top: 20px; padding: 15px; background: rgba(46, 213, 115, 0.1); border-radius: 10px;">
+                <strong>✅ VXc1 and VXc2 CONFIRMED:</strong> These are the correct continuous VIX futures contracts 
+                for M1 and M2. The -2.76 spread (contango) indicates normal market conditions with no immediate stress.
+            </div>
+        </div>
+    </div>
+</body>
+</html>
